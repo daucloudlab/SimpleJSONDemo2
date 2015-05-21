@@ -25,11 +25,13 @@ public class MainActivity extends ActionBarActivity {
 
         final ListView listview = (ListView)findViewById(R.id.listView1) ;
 
-        String strJSON = "[{\"MemberID\":\"1\",\"Name\":\"Мурзик\",\"Tel\":\"4954876107\"}"
-                + ",{\"MemberID\":\"2\",\"Name\":\"Барсик\",\"Tel\":\"4954780121\"}"
-                + ",{\"MemberID\":\"3\",\"Name\":\"Рыжик\",\"Tel\":\"4954543211\"}]";
+//        String strJSON = "[{\"MemberID\":\"1\",\"Name\":\"Мурзик\",\"Tel\":\"4954876107\"}"
+//                + ",{\"MemberID\":\"2\",\"Name\":\"Барсик\",\"Tel\":\"4954780121\"}"
+//                + ",{\"MemberID\":\"3\",\"Name\":\"Рыжик\",\"Tel\":\"4954543211\"}]";
         try{
-            JSONArray data = new JSONArray(strJSON) ;
+//            JSONArray data = new JSONArray(strJSON) ;
+
+            JSONArray data = createJSON() ;
 
             ArrayList<Map<String, String>> MyArrList = new ArrayList<Map<String, String>>() ;
             HashMap<String, String> map ;
@@ -73,5 +75,36 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private JSONArray createJSON() throws JSONException
+    {
+
+        ArrayList<JSONObject> MyArrJson = new ArrayList<JSONObject >();
+        JSONObject object;
+
+        /*** Ряд 1 ***/
+        object = new JSONObject();
+        object.put("MemberID","1");
+        object.put("Name", "Рыжик");
+        object.put("Tel", "4954876107");
+        MyArrJson.add(object);
+
+        /*** Ряд 2 ***/
+        object = new JSONObject();
+        object.put("MemberID","2");
+        object.put("Name", "Мурзик");
+        object.put("Tel", "4954780121");
+        MyArrJson.add(object);
+
+        /*** Ряд 3 ***/
+        object = new JSONObject();
+        object.put("MemberID","3");
+        object.put("Name", "Васька");
+        object.put("Tel", "4954543211");
+        MyArrJson.add(object);
+
+        JSONArray json = new JSONArray(MyArrJson);
+        return json;
     }
 }
